@@ -1,0 +1,363 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+
+snippet statelessW
+class ${1:name} extends StatelessWidget {
+  const ${1:name}({Key key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ${2:child}
+    );
+  }
+}
+endsnippet
+
+snippet statefulW
+class ${1:name} extends StatefulWidget {
+  ${1:name}({Key key}) : super(key: key);
+  @override
+  _${1:WidgetName}State createState() => _${1:WidgetName}State();
+}
+class _${1:index}State extends State<${1:index}> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+       child: ${2:child}
+    );
+  }
+}
+endsnippet
+
+snippet build
+@override
+Widget build(BuildContext context) {
+  return ${0:};
+}
+endsnippet
+
+snippet customPainter
+class ${0:name}Painter extends CustomPainter {
+
+  @override
+  void paint(Canvas canvas, Size size) {
+  }
+
+  @override
+  bool shouldRepaint(${0:name}Painter oldDelegate) => false;
+
+  @override
+  bool shouldRebuildSemantics(${0:name}Painter oldDelegate) => false;
+}
+endsnippet
+
+snippet customClipper
+
+class ${0:name}Clipper extends CustomClipper<Path> {
+
+  @override
+  Path getClip(Size size) {
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+endsnippet
+
+snippet initS
+
+@override
+void initState() { 
+  super.initState();
+  ${0:}
+}
+endsnippet
+
+snippet dis
+
+@override
+void dispose() { 
+  ${0:}
+  super.dispose();
+}
+endsnippet
+
+snippet reassemble
+
+@override
+void reassemble(){
+  super.reassemble();
+  ${0:}
+}
+endsnippet
+
+snippet didChangeD
+
+@override
+void didChangeDependencies() {
+  super.didChangeDependencies();
+  ${0:}
+}
+endsnippet
+
+snippet didUpdateW
+
+@override
+void didUpdateWidget (${1:Type} ${2:oldWidget}) {
+  super.didUpdateWidget(${2:oldWidget});
+  ${0:}
+}
+endsnippet
+
+snippet listViewB
+
+ListView.builder(
+  itemCount: ${1:1}
+  itemBuilder: (BuildContext context, int index) {
+  return ${2:};
+ }
+)
+endsnippet
+
+snippet listViewS
+
+ListView.separated(
+  itemCount: ${1:1}
+  separatorBuilder: (BuildContext context, int index) {
+  return ${2:};
+ }
+  itemBuilder: (BuildContext context, int index) {
+  return ${3:};
+ }
+)
+endsnippet
+
+snippet customScrollV
+
+CustomScrollView(
+  slivers: <Widget>[
+  ${0:}
+  ]
+)
+endsnippet
+
+snippet streamBldr
+
+StreamBuilder(
+  stream: ${1:stream} 
+  initialData: ${2:initialData} 
+  builder: (BuildContext context, AsyncSnapshot snapshot){
+    return Container(
+      child: ${3:child}
+    );
+  }
+)
+endsnippet
+
+snippet animatedBldr
+AnimatedBuilder(
+  animation: ${1:animation}
+  child: ${2:child}
+  builder: (BuildContext context, Widget child) {
+    return ${3:};
+  }
+)
+endsnippet
+
+snippet statefulBldr
+StatefulBuilder(
+  builder: (BuildContext context, setState) {
+    return ${0:};
+  }
+)
+endsnippet
+
+snippet orientationBldr
+
+OrientationBuilder(
+  builder: (BuildContext context, Orientation orientation) {
+    return Container(
+      child: ${3:child}
+    );
+  }
+)
+endsnippet
+
+snippet layoutBldr
+
+LayoutBuilder(
+  builder: (BuildContext context, BoxConstraints constraints) {
+    return ${0:};
+  }
+)
+endsnippet
+
+snippet singleChildSV
+
+SingleChildScrollView(
+  controller: ${1:controller,}
+  child: Column(
+    ${0:}
+  )
+)
+endsnippet
+
+snippet futureBldr
+
+FutureBuilder(
+  future: ${1:Future}
+  initialData: ${2:InitialData}
+  builder: (BuildContext context, AsyncSnapshot snapshot) {
+    return ${3:};
+  }
+)
+endsnippet
+
+snippet nosm
+
+@override
+dynamic noSuchMethod(Invocation invocation) {
+  ${1:}
+}
+endsnippet
+
+snippet inheritedW
+
+class ${1:Name} extends InheritedWidget {
+  ${1:Name}({Key key, this.child}) : super(key: key, child: child);
+
+  final Widget child;
+
+  static ${1:Name} of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<${1:Name}>();
+  }
+
+  @override
+  bool updateShouldNotify(${1:Name} oldWidget) {
+    return ${2:true};
+  }
+}
+endsnippet
+
+snippet mounted
+endsnippet
+
+snippet snk
+
+Sink<${1:type}> get ${2:name} => _${2:name}Controller.sink;
+final _${2:name}Controller = StreamController<${1:type}>();
+endsnippet
+
+snippet strm
+
+Stream<${1:type}> get ${2:name} => _${2:name}Controller.stream;
+final _${2:name}Controller = StreamController<${1:type}>();
+endsnippet
+
+snippet subj
+Stream<${1:type}> get ${2:name} => _${2:name}Subject.stream;
+final _${2:name}Subject = BehaviorSubject<${1:type}>();
+endsnippet
+
+snippet materialApp
+import 'package:flutter/material.dart';
+ 
+void main() => runApp(MyApp());
+ 
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Material App'
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Material App Bar')
+        )
+        body: Center(
+          child: Container(
+            child: Text('Hello World')
+          )
+        )
+      )
+    );
+  }
+}
+endsnippet
+
+snippet cupertinoapp b
+import 'package:flutter/cupertino.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoApp(
+      title: 'Cupertino App'
+      home: CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          middle: Text('Cupertino App Bar')
+        )
+        child: Center(
+          child: Container(
+            child: Text('Hello World')
+          )
+        )
+      )
+    );
+  }
+}
+endsnippet
+
+snippet tweenAnimationBuilder
+TweenAnimationBuilder(
+    duration: ${1:const Duration(),}
+    tween: ${2:Tween(),}
+    builder: (BuildContext context, ${3:dynamic} value, Widget child) {
+       return ${4:Container();}
+     }
+),  
+endsnippet
+
+snippet valueListenableBuilder
+
+ValueListenableBuilder(
+    valueListenable: ${1: null}
+    builder: (BuildContext context, ${2:dynamic} value, Widget child) {
+       return ${3: Container();}
+    }
+)
+endsnippet
+
+snippet widgetTest
+
+testWidgets(
+   \${1:test description}\","
+   (WidgetTester tester) async {}
+);
+endsnippet
+
